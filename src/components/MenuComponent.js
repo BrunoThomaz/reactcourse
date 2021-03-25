@@ -3,16 +3,6 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 
 
 class Menu extends Component {
-    constructor (props) {
-        super (props);
-        this.state = {
-            selectedDish: null
-        }
-    }
-
-    onDishSelect(dish) {
-        this.setState({ selectedDish:dish })
-    }
 
     renderDish(dish) {
         if (dish != null)
@@ -36,7 +26,7 @@ class Menu extends Component {
             return (
                 <div key={dish.id} className="col-12 mt-5 m-1">
                     <Card key={ dish.id } 
-                        onClick={ ()=> this.onDishSelect(dish) }>
+                        onClick={() => this.props.onClick(dish.id)}>
                     <Card left middle>
                         <CardImg object src={dish.image} alt={dish.name} />
                     </Card>
@@ -56,7 +46,7 @@ class Menu extends Component {
                 </div>
                 <div className="row">
                   <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
+                    {this.renderDish(this.props.selectedDish)}
                   </div>
                 </div>
             </div>
